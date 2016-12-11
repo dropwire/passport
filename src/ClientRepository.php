@@ -58,6 +58,7 @@ class ClientRepository extends BaseRepository
     public function create($userId, $name, $redirect, $personalAccess = false, $password = false)
     {
         $client = (new Client)->forceFill([
+            'id' => str_random(40),
             'user_id' => $userId,
             'name' => $name,
             'secret' => str_random(40),
