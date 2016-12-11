@@ -74,38 +74,6 @@ class ClientRepository extends BaseRepository
     }
 
     /**
-     * Update the given client.
-     *
-     * @param  Client  $client
-     * @param  string  $name
-     * @param  string  $redirect
-     * @return Client
-     */
-    public function update(Client $client, $name, $redirect)
-    {
-        $client->forceFill([
-            'name' => $name, 'redirect' => $redirect,
-        ])->save();
-
-        return $client;
-    }
-
-    /**
-     * Regenerate the client secret.
-     *
-     * @param  Client  $client
-     * @return Client
-     */
-    public function regenerateSecret(Client $client)
-    {
-        $client->forceFill([
-            'secret' => str_random(40),
-        ])->save();
-
-        return $client;
-    }
-
-    /**
      * Determine if the given client is revoked.
      *
      * @param  int  $id
@@ -115,18 +83,5 @@ class ClientRepository extends BaseRepository
     {
         return Client::where('id', $id)
                 ->where('revoked', true)->exists();
-    }
-
-    /**
-     * Delete the given client.
-     *
-     * @param  Client  $client
-     * @return void
-     */
-    public function delete(Client $client)
-    {
-        $client->tokens()->update(['revoked' => true]);
-
-        $client->forceFill(['revoked' => true])->save();
     }
 }
