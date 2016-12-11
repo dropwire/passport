@@ -8,5 +8,10 @@
         "raveren/kint": "^1.0"
     },
     "license": "MIT",
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Dropwire\\Passport\\": "src/"
+        }
+    }
 }
