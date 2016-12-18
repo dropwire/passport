@@ -2,10 +2,11 @@
 
 namespace Dropwire\Passport;
 
+use Laravel\Passport\Bridge\PersonalAccessGrant;
 use Laravel\Passport\Passport;
 use Laravel\Passport\PassportServiceProvider as BaseServiceProvider;
 use League\OAuth2\Server\AuthorizationServer;
-use League\OAuth2\Server\Grant\PasswordGrant;
+use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 
 class PassportServiceProvider extends BaseServiceProvider
 {
