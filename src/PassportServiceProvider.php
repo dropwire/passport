@@ -2,6 +2,7 @@
 
 namespace Dropwire\Passport;
 
+use DateInterval;
 use Laravel\Passport\Bridge\PersonalAccessGrant;
 use Laravel\Passport\Passport;
 use Laravel\Passport\PassportServiceProvider as BaseServiceProvider;
