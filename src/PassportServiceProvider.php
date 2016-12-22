@@ -12,6 +12,23 @@ use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 class PassportServiceProvider extends BaseServiceProvider
 {
     /**
+     * Fully qualified class name for the class that should be aliased in place
+     * of the core Passport HandlesOAuthErrors trait to alter how exceptions
+     * are caught and rendered.
+     *
+     * @var string
+     */
+    protected $errorHandlerTrait = \Dropwire\Passport\Http\Controllers\HandlesOAuthErrors::class;
+
+    /**
+     * Flag that determines if OAuth server errors should be run through the
+     * standard Laravel exception handler.
+     *
+     * @var boolean
+     */
+    protected $useErrorHandler = true;
+
+    /**
      * Register Passport's migration files.
      *
      * @return void
@@ -36,6 +53,8 @@ class PassportServiceProvider extends BaseServiceProvider
     {
         $this->registerOverloads();
 
+        $this->aliasErrorHandler();
+
         $this->registerAuthorizationServer();
 
         $this->registerResourceServer();
@@ -54,6 +73,22 @@ class PassportServiceProvider extends BaseServiceProvider
             \Laravel\Passport\ClientRepository::class,
             \Dropwire\Passport\ClientRepository::class
         );
+    }
+
+    /**
+     * Aliases a new HandlesOAuthErrors trait in place of the core Laravel one,
+     * provided the useErrorHandler flag is exactly true.
+     *
+     * @return void
+     */
+    public function aliasErrorHandler()
+    {
+        if ($this->useErrorHandler === true) {
+            class_alias(
+                $this->errorHandlerTrait,
+                \Laravel\Passport\Http\Controllers\HandlesOAuthErrors::class
+            );
+        }
     }
 
     /**
