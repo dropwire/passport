@@ -55,6 +55,20 @@ class PassportServiceProvider extends BaseServiceProvider
             \Dropwire\Passport\ClientRepository::class
         );
 
+        $this->app->bind(
+            \Laravel\Passport\Http\Controllers\AccessTokenController::class,
+            \Dropwire\Passport\Http\Controllers\AccessTokenController::class
+        );
+
+        $this->app->bind(
+            \Laravel\Passport\Http\Controllers\ApproveAuthorizationController::class,
+            \Dropwire\Passport\Http\Controllers\ApproveAuthorizationController::class
+        );
+
+        $this->app->bind(
+            \Laravel\Passport\Http\Controllers\AuthorizationController::class,
+            \Dropwire\Passport\Http\Controllers\AuthorizationController::class
+        );
     }
 
     /**
