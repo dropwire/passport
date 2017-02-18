@@ -2,7 +2,7 @@
     "name": "dropwire/passport",
     "type": "library",
     "require": {
-        "laravel/passport": "^1.0"
+        "laravel/passport": "2.0.4"
     },
     "require-dev": {
         "raveren/kint": "^1.0"
