@@ -2,10 +2,10 @@
     "name": "dropwire/passport",
     "type": "library",
     "require": {
-        "laravel/passport": "2.0.4"
+        "laravel/passport": "^3.0.0"
     },
     "require-dev": {
-        "raveren/kint": "^1.0"
+        "kint-php/kint": "^2.1"
     },
     "license": "MIT",
     "minimum-stability": "stable",
